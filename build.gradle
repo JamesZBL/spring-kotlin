@@ -5,20 +5,19 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'kotlin-allopen'
 
 group = 'me.zbl'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    runtimeOnly 'com.h2database:h2'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude module: 'junit'
@@ -26,6 +25,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'io.projectreactor:reactor-test'
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
 }
 
 test {

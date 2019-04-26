@@ -12,6 +12,11 @@ import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.http.HttpStatus
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
+/**
+ * Integration test
+ *
+ * @author ZHENG BAO LE
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension::class)
 class IntegrationTest(@Autowired val restTemplate: TestRestTemplate) {
