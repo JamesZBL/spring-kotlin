@@ -40,7 +40,7 @@ class IntegrationTest(@Autowired val restTemplate: TestRestTemplate) {
     fun `assert messages size`() {
         val messages = restTemplate.getForEntity<List<String>>("/messages")
         println(messages)
-        assertThat(messages).asList().asString().contains("message")
+        assertThat(messages.body).asList().allMatch { (it as String).contains("message") }
     }
 
     @AfterAll
