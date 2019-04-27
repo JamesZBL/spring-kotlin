@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RestController
  * @since 2019-04-27
  */
 @RestController
-class BlogEndpoint(
-        @Autowired val articleRepository: ArticleRepository,
-        @Autowired val userRepository: UserRepository) {
+class BlogEndpoint @Autowired constructor(
+        private val articleRepository: ArticleRepository,
+        private val userRepository: UserRepository) {
 
     @GetMapping("/article")
-    fun allArticles(): Iterable<Article> = articleRepository.findAllOrderByAddedAtDesc()
+    fun allArticles() = articleRepository.findAllByOrderByAddedAtDesc()
 
     @GetMapping("/article/{slug}")
-    fun allArticlesBySlug(@PathVariable slug: String): Article = articleRepository.findBySlug(slug)
+    fun allArticlesBySlug(@PathVariable slug: String) = articleRepository.findBySlug(slug)
 
     @GetMapping("/user")
     fun allUser(): Iterable<User> = userRepository.findAll()
 
     @GetMapping("/user/{login}")
-    fun allUserByLogin(@PathVariable login: String): User = userRepository.findByLogin(login)
+    fun allUserByLogin(@PathVariable login: String) = userRepository.findByLogin(login)
 }

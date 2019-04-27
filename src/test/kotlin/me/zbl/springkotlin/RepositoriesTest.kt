@@ -2,6 +2,7 @@ package me.zbl.springkotlin
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager
 import org.springframework.data.repository.findByIdOrNull
@@ -11,7 +12,7 @@ import org.springframework.data.repository.findByIdOrNull
  * @since 2019-04-27
  */
 @DataJpaTest
-class RepositoriesTest(
+class RepositoriesTest @Autowired constructor(
         val entityManager: TestEntityManager,
         val userRepository: UserRepository,
         val articleRepository: ArticleRepository) {
