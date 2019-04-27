@@ -29,6 +29,12 @@ group = 'me.zbl'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+repositories {
+    mavenLocal()
+    maven { url = 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
