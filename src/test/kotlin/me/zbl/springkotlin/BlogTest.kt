@@ -1,8 +1,6 @@
 package me.zbl.springkotlin
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Condition
-import org.assertj.core.data.Index
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -29,13 +27,11 @@ class BlogTest(@Autowired val restTemplate: TestRestTemplate) {
 
     @Test
     fun `assert article title, content and author`() {
-        val articles = restTemplate.getForEntity<List<Article>>("/article")
+        val articles = restTemplate.getForEntity<Array<Article>>("/article")
         assertThat(articles.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(articles.body).asList()
-                .`is`(Condition({ ar -> (ar as Article).title.contains("Spring") }, "", null), Index.atIndex(0))
-        assertThat(articles.body).asList()
-                .`is`(Condition({ ar -> (ar as Article).title.contains("Kotlin") }, "", null), Index.atIndex(0))
-        assertThat(articles.body).asList().allMatch { ar -> (ar as Article).author.firstName == "James" }
+        assertThat(articles.body?.get(0)).matches({ m -> m?.title?.contains("Docker")!! }, "Docker")
+        assertThat(articles.body?.get(1)).matches({ m -> m?.title?.contains("Spring")!! }, "Spring")
+        assertThat(articles.body).allMatch { m -> m.author.firstName == "James" }
     }
 
     @AfterAll
