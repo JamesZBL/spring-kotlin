@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class BlogEndpoint @Autowired constructor(
         private val articleRepository: ArticleRepository,
-        private val userRepository: UserRepository) {
+        private val userRepository: UserRepository,
+        private val blogProperties: BlogProperties) {
 
     @GetMapping("/article")
     fun allArticles() = articleRepository.findAllByOrderByAddedAtDesc()
@@ -25,4 +26,7 @@ class BlogEndpoint @Autowired constructor(
 
     @GetMapping("/user/{login}")
     fun allUserByLogin(@PathVariable login: String) = userRepository.findByLogin(login)
+
+    @GetMapping("/notification")
+    fun notification() = this.blogProperties
 }

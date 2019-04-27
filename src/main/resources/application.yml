@@ -1,1 +1,5 @@
-
+blog:
+  title: Blog
+  banner:
+    title: Warning
+    content: This blog will be down tomorrow.

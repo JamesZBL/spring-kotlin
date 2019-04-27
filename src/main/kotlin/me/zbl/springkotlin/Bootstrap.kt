@@ -2,6 +2,7 @@ package me.zbl.springkotlin
 
 import org.springframework.boot.Banner
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.boot.runApplication
  * @author ZHENG BAO LE
  */
 @SpringBootApplication
+@EnableConfigurationProperties(BlogProperties::class)
 class Bootstrap
 
 fun main(args: Array<String>) {

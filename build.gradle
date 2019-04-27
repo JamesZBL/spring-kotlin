@@ -8,6 +8,7 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'kotlin-allopen'
+apply plugin: 'kotlin-kapt'
 
 group = 'me.zbl'
 version = '0.0.1-SNAPSHOT'
@@ -30,6 +31,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'io.projectreactor:reactor-test'
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 allOpen {

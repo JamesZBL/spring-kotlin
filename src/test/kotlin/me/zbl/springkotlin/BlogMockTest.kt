@@ -49,4 +49,12 @@ class BlogMockTest(@Autowired val mockMvc: MockMvc) {
                 .andExpect(jsonPath("\$.[0].firstName").value(james.firstName))
                 .andExpect(jsonPath("\$.[1].firstName").value(tom.firstName))
     }
+
+    @Test
+    fun `assert notification is warning`() {
+        mockMvc.perform(get("/notification").accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("\$.title").value("Blog"))
+                .andExpect(jsonPath("\$.banner.title").value("Warning"))
+                .andExpect(jsonPath("\$.banner.content").isNotEmpty)
+    }
 }
