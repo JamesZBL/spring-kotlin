@@ -19,6 +19,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.noarg' version '1.2.71'
     id 'org.jetbrains.kotlin.jvm' version '1.2.71'
     id 'org.jetbrains.kotlin.plugin.spring' version '1.2.71'
+    id "com.gradle.build-scan" version "2.2.1"
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -75,4 +76,9 @@ compileTestKotlin {
         freeCompilerArgs = ['-Xjsr305=strict']
         jvmTarget = '1.8'
     }
+}
+
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
 }
